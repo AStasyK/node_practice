@@ -6,7 +6,7 @@ const express = require('express'),
 let users = require('./users').data,
     nextId = require('./users').meta.next_id;
 
-app.use(express.static(__dirname + '/views'));
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
