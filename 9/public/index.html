@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Socket</title>
+</head>
+<body>
+    <form>
+        <input id="message" type="text" name="message"  value="">
+        <button id="button">Отправить</button>
+    </form>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+        socket.on('server-message', (text) => console.log('Server echoed back ' + text));
+        let button = document.getElementById('button');
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            let message = document.getElementById('message').value;
+            console.log(message);
+            socket.emit('client-message', message);
+        });
+    </script>
+</body>
+</html>
